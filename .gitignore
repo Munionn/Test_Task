@@ -22,6 +22,9 @@ mysql_data/
 mysql-init/*.sql
 !mysql-init/.gitkeep
 
+# Uploaded files
+uploads/
+
 # IDE
 .vscode/
 .idea/

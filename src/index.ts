@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
+import fileRoutes from './routes/files';
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/', authRoutes);
+
+app.use('/', fileRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

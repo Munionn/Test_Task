@@ -79,6 +79,10 @@ router.post('/signin', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'id and password are required' });
     }
 
+    if (typeof id !== 'string' || typeof password !== 'string') {
+      return res.status(400).json({ error: 'id and password must be strings' });
+    }
+
     
     const [user] = await db
       .select()
@@ -155,8 +159,8 @@ router.post('/signin/new_token', async (req: Request, res: Response) => {
   try {
     const { refreshToken } = req.body;
 
-    if (!refreshToken) {
-      return res.status(400).json({ error: 'refreshToken is required' });
+    if (!refreshToken || typeof refreshToken !== 'string' || refreshToken.trim().length === 0) {
+      return res.status(400).json({ error: 'refreshToken is required and must be a non-empty string' });
     }
 
     const [tokenRecord] = await db
